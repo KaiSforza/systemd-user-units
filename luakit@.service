@@ -1,0 +1,10 @@
+[Unit]
+Description=lightweight web browser for display %i
+After=i3wm.target
+
+[Service]
+Environment=DISPLAY=%i
+ExecStart=/usr/bin/luakit
+
+[Install]
+WantedBy=mystuff.target

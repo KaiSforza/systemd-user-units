@@ -1,0 +1,10 @@
+[Unit]
+Description=Image editor for display %i
+After=i3wm.target
+
+[Service]
+Environment=DISPLAY=%i
+ExecStart=/usr/bin/gimp
+
+[Install]
+WantedBy=mystuff.target

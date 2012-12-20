@@ -1,0 +1,10 @@
+[Unit]
+Description=comic book viewer for display %i
+After=i3wm.target
+
+[Service]
+Environment=DISPLAY=%i
+ExecStart=/usr/bin/mcomix
+
+[Install]
+WantedBy=mystuff.target
