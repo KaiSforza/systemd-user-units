@@ -1,0 +1,15 @@
+[Unit]
+Description=i3wm
+Before=mystuff.target
+After=xorg.target
+
+[Service]
+Requires=xorg.target
+Environment=PATH=/home/wgiokas/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/wgiokas/bin
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=i3wm.target

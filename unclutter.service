@@ -1,0 +1,10 @@
+[Unit]
+Description=unclutter daemon to hide mouse pointer
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/unclutter -idle 2 -jitter 3 -display :0
+Restart=always
+
+[Install]
+WantedBy=mystuff.target

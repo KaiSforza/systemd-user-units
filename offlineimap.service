@@ -1,0 +1,10 @@
+[Unit]
+Description=Start offlineimap as a daemon
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/offlineimap -u Quiet
+Restart=always
+
+[Install]
+WantedBy=mystuff.target

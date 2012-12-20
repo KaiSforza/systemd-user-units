@@ -1,0 +1,9 @@
+[Unit]
+Description=i3wm
+Wants=xorg.target
+Wants=myStuff.target
+Requires=dbus.socket
+AllowIsolate=true
+
+[Install]
+Alias=default.target

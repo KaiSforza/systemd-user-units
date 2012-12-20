@@ -1,0 +1,10 @@
+[Unit]
+Description=bind hotkeys
+After=xorg.target
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/xbindkeys -n -f /home/wgiokas/.xbindkeysrc
+
+[Install]
+WantedBy=mystuff.target

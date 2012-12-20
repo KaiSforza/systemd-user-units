@@ -1,0 +1,14 @@
+[Unit]
+Description=weechat extensible chat client
+Requires=tmux@%i.service
+After=tmux@%i.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/tmux kill-pane -t %i:1
+ExecStart=/usr/bin/tmux new-window -t %i -n 'weechat' 'weechat-curses --upgrade -d "%h/.weechat"'
+ExecStop=/home/wgiokas/.config/systemd/bin/weechat-upgrade "%h/.weechat/weechat_fifo*" "*/upgrade -quit"
+
+[Install]
+WantedBy=mystuff.target

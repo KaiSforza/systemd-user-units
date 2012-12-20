@@ -1,0 +1,10 @@
+[Unit]
+Description=handle clipboards
+After=xmonad.target
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/parcellite
+
+[Install]
+WantedBy=mystuff.target

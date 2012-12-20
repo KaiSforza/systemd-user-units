@@ -1,0 +1,8 @@
+[Unit]
+Description=handle automounting
+
+[Service]
+ExecStart=/usr/bin/udiskie
+
+[Install]
+WantedBy=mystuff.target
