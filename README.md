@@ -1,8 +1,6 @@
-systemd-user-units
-==================
+#systemd-user-units
 
-Converting to `systemd --user`
-==============================
+##Converting to `systemd --user`
 
 systemd is useful for system initialization, but it it also useful from a user
 standpoint. Using `systemctl --system` to do anything requires root prevelages
@@ -19,12 +17,12 @@ even more.
 All of your systemd user units will go to $HOME/.config/systemd/user. These
 units take precedence over units in other systemd unit directories.
 
-# Prerequisites
+### Prerequisites
 
 There are two packages you need to get this working, both currently available
 from the AUR: xorg-launch-helper [2] and user-session-units [3]. 
 
-# Creating some starting units
+### Creating some starting units
 
 Next is setting up your targets. I set up two, one for my window manager (i3)
 and another as a default target. The window manager target, i3wm.target as I
@@ -85,6 +83,8 @@ You can fill your user unit directory with a plethora of services, I currently
 have ones for mpd, gpg-agent, offlineimap, parcellite, pulse, tmux, urxvtd,
 xbindkeys and xmodmap to name a few.
 
+### Some actual important stuff
+
 Doing this will not allow you to run systemd --user, though. If you installed
 user-session-units as listed above, then you must copy user-session@.service
 to your user unit directory and use `systemctl --user enable
@@ -109,6 +109,8 @@ Now add `/usr/lib/systemd/systemd --user` to your shell's `$HOME/.*profile` file
 and you are ready to go! (This takes a lot of tweaking, so when I say that, I
 mean that you are ready to debug and find spelling mistakes.)
 
+### Anecdotes
+
 One of the most important things you can add to the service files you will be
 writing is the use of Before= and After= in the [Unit] section. These two
 parts will determine the order things are started. Say you have a graphical
@@ -118,8 +120,10 @@ your unit. Say you start ncmpcpp, which requires mpd to start, you can put
 exactly how this needs to go either from experience or from reading the
 systemd manual pages. I would recommend starting with systemd.unit(5) [5].
 
-[1] http://blog.gtmanfred.com/?p=26
-[2] https://aur.archlinux.org/packages/xorg-launch-helper/
-[3] https://aur.archlinux.org/packages/user-session-units/
-[4] http://cgit.freedesktop.org/systemd/systemd/commit/?id=067d851d30386c553e3a84f59d81d003ff638b91
-[5] http://www.freedesktop.org/software/systemd/man/systemd.unit.html
+### Links
+
+* [1] http://blog.gtmanfred.com/?p=26
+* [2] https://aur.archlinux.org/packages/xorg-launch-helper/
+* [3] https://aur.archlinux.org/packages/user-session-units/
+* [4] http://cgit.freedesktop.org/systemd/systemd/commit/?id=067d851d30386c553e3a84f59d81d003ff638b91
+* [5] http://www.freedesktop.org/software/systemd/man/systemd.unit.html
