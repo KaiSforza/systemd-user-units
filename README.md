@@ -20,7 +20,10 @@ units take precedence over units in other systemd unit directories.
 ### Prerequisites
 
 There are two packages you need to get this working, both currently available
-from the AUR: xorg-launch-helper [2] and user-session-units [3]. 
+from the AUR: xorg-launch-helper [2] and user-session-units [3]. You should also
+have at least the ability to apply patches and edit pkgbuilds. Just remember
+that this is no easy feat. Though once you get it working you will be rewarded
+with a damn beautiful system.
 
 ### Creating some starting units
 
@@ -114,9 +117,9 @@ mean that you are ready to debug and find spelling mistakes.)
 One of the most important things you can add to the service files you will be
 writing is the use of Before= and After= in the [Unit] section. These two
 parts will determine the order things are started. Say you have a graphical
-application you want to start on boot, you would put `After=xorg.target' into
+application you want to start on boot, you would put `After=xorg.target` into
 your unit. Say you start ncmpcpp, which requires mpd to start, you can put
-`After=mpd.service' into your ncmpcpp unit. You will eventually figure out
+`After=mpd.service` into your ncmpcpp unit. You will eventually figure out
 exactly how this needs to go either from experience or from reading the
 systemd manual pages. I would recommend starting with systemd.unit(5) [5].
 
