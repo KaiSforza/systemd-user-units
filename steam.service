@@ -1,0 +1,12 @@
+[Unit]
+Description=Steam launcher
+After=i3wm.target
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/steam
+ExecStop=/usr/bin/pkill -F %h/.steampid
+ExecStop=/usr/bin/pkill -9 MainThrd
+
+[Install]
+WantedBy=i3wm.target
