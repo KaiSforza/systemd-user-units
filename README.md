@@ -25,7 +25,7 @@ from the AUR: xorg-launch-helper [2] and user-session-units [3].
 ### Creating some starting units
 
 Next is setting up your targets. I set up two, one for my window manager (i3)
-and another as a default target. The window manager target, i3wm.target as I
+and another as a default target. The window manager target, `i3wm.target` as I
 called it, should be populated like so:
 
     [Unit]
@@ -41,7 +41,7 @@ called it, should be populated like so:
 This will be the target for your graphical interface. (Replace i3wm with your
 choice of window manager/desktop environment.)
 
-I put together a second target called mystuff.target. This will be 'WantedBy'
+I put together a second target called `mystuff.target`. This will be 'WantedBy'
 all services but your window manager:
 
     [Unit]
@@ -55,7 +55,7 @@ Link this unit to default.target. When you start systemd --user, it will start
 this target. 
 
 Next you need to begin writing services. First you should throw together a
-service for your window manager. I named mine i3.service:
+service for your window manager. I named mine `i3.service`:
 
     [Unit]
     Description=i3wm
@@ -86,10 +86,10 @@ xbindkeys and xmodmap to name a few.
 ### Some actual important stuff
 
 Doing this will not allow you to run systemd --user, though. If you installed
-user-session-units as listed above, then you must copy user-session@.service
+user-session-units as listed above, then you must copy `user-session@.service`
 to your user unit directory and use `systemctl --user enable
-user-session@yourloginname.service`. Next, edit the user-session@.service (not
-the user-session@yourloginname.service) and replace this line: 
+user-session@yourloginname.service`. Next, edit the `user-session@.service` (not
+the `user-session@yourloginname.service`) and replace this line: 
 
     Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%I/dbus/user_bus_socket
 
@@ -119,6 +119,12 @@ your unit. Say you start ncmpcpp, which requires mpd to start, you can put
 `After=mpd.service' into your ncmpcpp unit. You will eventually figure out
 exactly how this needs to go either from experience or from reading the
 systemd manual pages. I would recommend starting with systemd.unit(5) [5].
+
+Just as a note to readers and users, I am by no means an expert on this stuff.
+It's not easy, and it made me work. If you don't get it to work the first time,
+don't just pass it off as a failed attempt. I completely botched it my first
+try, and only got it working with some more reading and excellent help. Don't
+give up!
 
 ### Links
 
