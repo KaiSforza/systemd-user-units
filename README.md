@@ -99,6 +99,9 @@ with this:
 
     Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/dbus/user_bus_socket
 
+Also, a [Install] section needs to be added as well. See my `user-session@.service`
+for an example. 
+
 You will need to patch systemd to do this, so either using systemd-git from
 after commit 067d851d [4] or patch it into systemd with the ABS. 
 
