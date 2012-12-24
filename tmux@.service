@@ -1,5 +1,6 @@
 [Unit]
 Description=tmux client, session name: %i
+Requires=mpd.service
 After=mpd.service
 
 [Service]
@@ -8,9 +9,9 @@ RemainAfterExit=yes
 ExecStart=/usr/bin/tmux new-session -d -s %i -n 'weechat' 'weechat-curses --upgrade -d %h/.weechat'
 #ExecStart=/usr/bin/tmux new-session -d -s %i
 ExecStart=/usr/bin/tmux new-window -t %i:2 'mutt'
-ExecStart=/usr/bin/tmux new-window -t %i:3 'calcurse'
-ExecStart=/usr/bin/tmux new-window -t %i:4 'ncmpcpp'
-ExecStart=/usr/bin/tmux new-window -t %i:5 'zsh'
+#ExecStart=/usr/bin/tmux new-window -t %i:3 'calcurse'
+ExecStart=/usr/bin/tmux new-window -t %i:3 'ncmpcpp'
+ExecStart=/usr/bin/tmux new-window -t %i:4 'zsh'
 
 ExecStop=/usr/bin/tmux kill-session -t %i
 
