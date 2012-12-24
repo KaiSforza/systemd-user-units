@@ -1,5 +1,6 @@
 [Unit]
 Description=Music Player Daemon
+Before=tmux@.service
 
 [Service]
 ExecStart=/usr/bin/mpd --no-daemon
