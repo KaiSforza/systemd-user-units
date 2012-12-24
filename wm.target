@@ -1,5 +1,5 @@
 [Unit]
-Description=i3wm
+Description=Window manager target
 Wants=xorg.target
 Wants=myStuff.target
 Requires=dbus.socket

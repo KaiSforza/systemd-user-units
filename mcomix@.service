@@ -1,6 +1,6 @@
 [Unit]
 Description=comic book viewer for display %i
-After=i3wm.target
+After=wm.target
 
 [Service]
 Environment=DISPLAY=%i

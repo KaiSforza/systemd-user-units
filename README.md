@@ -28,11 +28,11 @@ with a damn beautiful system.
 ### Creating some starting units
 
 Next is setting up your targets. I set up two, one for my window manager (i3)
-and another as a default target. The window manager target, `i3wm.target` as I
-called it, should be populated like so:
+and another as a default target. The window manager target, `wm.target`, and 
+populated it like so:
 
     [Unit]
-    Description=i3wm
+    Description=Window manager target
     Wants=xorg.target
     Wants=myStuff.target
     Requires=dbus.socket
@@ -41,15 +41,14 @@ called it, should be populated like so:
     [Install]
     Alias=default.target
 
-This will be the target for your graphical interface. (Replace i3wm with your
-choice of window manager/desktop environment.)
+This will be the target for your graphical interface.
 
 I put together a second target called `mystuff.target`. This will be 'WantedBy'
 all services but your window manager:
 
     [Unit]
     Description=Xinitrc Stuff
-    Wants=i3wm.target
+    Wants=wm.target
     
     [Install]
     Alias=default.target
@@ -61,7 +60,7 @@ Next you need to begin writing services. First you should throw together a
 service for your window manager. I named mine `i3.service`:
 
     [Unit]
-    Description=i3wm
+    Description=Simple tiling/stacking/tabbed window manager
     Before=mystuff.target
     After=xorg.target
     
@@ -74,11 +73,11 @@ service for your window manager. I named mine `i3.service`:
     RestartSec=10
 
     [Install]
-    WantedBy=i3wm.target
+    WantedBy=wm.target
 
 Note the [Install] section includes a 'WantedBy' part. When using `systemctl
 --user enable` it will link this as
-$HOME/.config/systemd/user/i3wm.target.wants/i3.service, allowing it to be
+$HOME/.config/systemd/user/wm.target.wants/i3.service, allowing it to be
 started at login. I would recommend enabling this service, not linking it
 manually.
 
