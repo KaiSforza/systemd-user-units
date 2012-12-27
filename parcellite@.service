@@ -1,5 +1,6 @@
 [Unit]
 Description=handle clipboards for display %i
+Requires=xorg.target
 After=wm.target
 
 [Service]

@@ -1,5 +1,6 @@
 [Unit]
 Description=Music Player Daemon
+Requires=tmux@.service
 Before=tmux@.service
 
 [Service]

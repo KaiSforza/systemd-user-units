@@ -1,5 +1,7 @@
 [Unit]
 Description=unclutter daemon to hide mouse pointer
+Requires=xorg.target
+After=xorg.target
 
 [Service]
 Type=simple

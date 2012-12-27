@@ -1,5 +1,6 @@
 [Unit]
 Description=bind hotkeys for display %i
+Requires=xorg.target
 After=xorg.target
 
 [Service]
