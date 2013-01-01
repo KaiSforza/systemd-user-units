@@ -3,11 +3,11 @@
 ##Converting to `systemd --user`
 
 systemd is useful for system initialization, but it it also useful from a user
-standpoint. Using `systemctl --system` to do anything requires root prevelages
-and is therefore not useful to unprivelaged users. Starting their personal
+standpoint. Using `systemctl --system` to do anything requires root privileges
+and is therefore not useful to unprivileged users. Starting their personal
 services either requires them to be enabled or to be started by someone with
-root privelages. Recently, I have begun working with the user part of systemd.
-This allows me to use systemd to start unprivelaged services, such as my
+root privileges. Recently, I have begun working with the user part of systemd.
+This allows me to use systemd to start unprivileged services, such as my
 window manager, tmux session, music player daemon and more.
 
 I began using gtmanfred's guide [1] to setting this up. I am going to rewrite
@@ -34,7 +34,7 @@ populated it like so:
     [Unit]
     Description=Window manager target
     Wants=xorg.target
-    Wants=myStuff.target
+    Wants=mystuff.target
     Requires=dbus.socket
     AllowIsolate=true
     
@@ -87,32 +87,41 @@ xbindkeys and xmodmap to name a few.
 
 ### Some actual important stuff
 
-Doing this will not allow you to run systemd --user, though. If you installed
-user-session-units as listed above, then you must copy `user-session@.service`
-to your user unit directory and use `systemctl --user enable
-user-session@yourloginname.service`. Next, edit the `user-session@.service` (not
-the `user-session@yourloginname.service`) and replace this line: 
-
-    Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%I/dbus/user_bus_socket
-
-with this:
-
-    Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/dbus/user_bus_socket
-
-Also, a [Install] section needs to be added as well. See my `user-session@.service`
-for an example. 
-
-You will need to patch systemd to do this, so either using systemd-git from
-after commit 067d851d [4] or patch it into systemd with the ABS. 
-
-Last but not least, add this line to /etc/pam.d/login or
-/etc/pam.d/systemd-auth (whichever exists):
+Last but not least, add this line to /etc/pam.d/login and
+/etc/pam.d/system-auth:
 
     session    required    pam_systemd.so
 
 Now add `/usr/lib/systemd/systemd --user` to your shell's `$HOME/.*profile` file
 and you are ready to go! (This takes a lot of tweaking, so when I say that, I
 mean that you are ready to debug and find spelling mistakes.)
+
+### Auto Login
+
+You can also have systemd --user track your login shell. This is quite useful, 
+in my opinion. To do so, you can use a display manager that is started with
+systemd (usually enabled and started at boot) or you can autologin with 
+`user-session@.service`. Copy the `user-session@.service` to your
+`/etc/systemd/system/` directory and edit it there. You will also need to
+disable `getty@tty1.service` for this to work correctly.
+
+You will need to patch systemd to do this, so either using systemd-git from
+after commit 067d851d [4] or patch it into systemd with the ABS. Then edit this
+line:
+
+    Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%I/dbus/user_bus_socket
+
+to this:
+
+    Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/dbus/user_bus_socket
+
+Also, a [Install] section needs to be added as well.
+
+    [Install]
+    WantedBy=graphical.target
+
+should be appended to your user-session@.service file, else enabling it will not
+work correctly.
 
 ### Anecdotes
 

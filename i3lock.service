@@ -1,0 +1,11 @@
+[Unit]
+Description=i3lock on i3 start
+After=xorg.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/i3lock -d -c 000000
+
+[Install]
+WantedBy=mystuff.target

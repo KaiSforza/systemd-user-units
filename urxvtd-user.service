@@ -2,6 +2,7 @@
 Description=Urxvt Daemon
 
 [Service]
+Environment=SHELL=/bin/zsh
 ExecStart=/usr/bin/urxvtd
 
 [Install]

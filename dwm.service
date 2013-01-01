@@ -1,11 +1,10 @@
 [Unit]
 Description=Dynamic window manager written in C
 Requires=xorg.target
-Before=mystuff.target
-After=xorg.target
+Requires=mystuff.target
 
 [Service]
-Environment=PATH=/home/wgiokas/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/wgiokas/bin
+Environment=PATH=/home/wgiokas/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/core_perl:/home/wgiokas/bin
 Environment=DISPLAY=:0
 ExecStart=/usr/bin/dwm
 Restart=always

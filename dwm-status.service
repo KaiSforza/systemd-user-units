@@ -1,6 +1,6 @@
 [Unit]
 Description=Status bar for dwm
-Before=dwm.service
+After=dwm.service
 Requires=dwm.service
 
 [Service]
