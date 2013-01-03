@@ -1,0 +1,10 @@
+[Unit]
+Description=pdf reader for display %i
+After=wm.target
+
+[Service]
+Environment=DISPLAY=%i
+ExecStart=/usr/bin/zathura
+
+[Install]
+WantedBy=mystuff.target
