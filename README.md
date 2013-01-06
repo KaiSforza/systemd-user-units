@@ -41,8 +41,9 @@ populated it like so:
 
 This will be the target for your graphical interface.
 
-I put together a second target called `mystuff.target`. This will be 'WantedBy'
-all services but your window manager:
+I put together a second target called `mystuff.target`. You can call it whatever
+you want, but this is what I have in my service files and this wiki. This will
+be 'WantedBy' all services but your window manager:
 
     [Unit]
     Description=Xinitrc Stuff
@@ -64,7 +65,8 @@ service for your window manager. I named mine `dwm.service`:
     
     [Service]
     Requires=xorg.target
-    Environment=PATH=/home/wgiokas/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/wgiokas/bin
+    # uncomment this if you want to have a non-default path
+    #Environment=PATH=%h/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:%h/bin
     Environment=DISPLAY=:0
     ExecStart=/usr/bin/dwm
     Restart=always
@@ -81,7 +83,8 @@ manually.
 
 You can fill your user unit directory with a plethora of services, I currently
 have ones for mpd, gpg-agent, offlineimap, parcellite, pulse, tmux, urxvtd,
-xbindkeys and xmodmap to name a few.
+xbindkeys and xmodmap to name a few. This allows these programs to be tracked
+by systemd individually.
 
 ## Some actual important stuff
 
