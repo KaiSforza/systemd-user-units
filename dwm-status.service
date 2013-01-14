@@ -6,8 +6,7 @@ Requires=dwm.service
 [Service]
 Environment=DISPLAY=:0
 ExecStart=/usr/bin/dwmstatus
-Restart=on-failure
-RestartSec=5
+Restart=no
 
 [Install]
 WantedBy=wm.target

@@ -2,6 +2,8 @@
 Description=Dynamic window manager written in C
 Requires=xorg.target
 Requires=mystuff.target
+After=xorg.target
+Before=mystuff.target
 
 [Service]
 Type=simple
