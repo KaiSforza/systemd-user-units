@@ -148,6 +148,21 @@ don't just pass it off as a failed attempt. I completely botched it my first
 try, and only got it working with some more reading and excellent help. Don't
 give up!
 
+## A quick graph of how my units start:
+``
+[pulseaudio]-----------------------
+[mpd]------------------------------
+[urxvtd]---------------------------
+[udiskie]--------------------------
+[offlineimap]----------------------
+[xorg]-----------------------------
+   ├─[dwm]-------------------------
+   │ └─[dwm-status]----------------
+   ├─[xbindkeys]-------------------
+   ├─[unclutter]-------------------
+   ├─[parcellite]------------------
+   └─[i3lock]----------------------
+``
 ## See also:
 
 * [X Units](https://bitbucket.org/KaiSforza/systemd-user-units/wiki/X-Applications)
