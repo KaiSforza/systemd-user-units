@@ -1,0 +1,14 @@
+[Unit]
+Description=xset
+Requires=xorg.target
+After=xorg.target
+
+[Service]
+Type=oneshot
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/xset -b
+ExecStart=/usr/bin/xset +fp /usr/share/fonts/local
+ExecStart=/usr/bin/xset fp rehash
+
+[Install]
+WantedBy=mystuff.target
