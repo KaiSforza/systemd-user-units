@@ -1,4 +1,4 @@
-#Converting to `systemd --user`
+# Converting to `systemd --user`
 
 systemd is useful for system initialization, but it it also useful from a user
 standpoint. Using `systemctl --system` to do anything requires root privileges
@@ -65,9 +65,8 @@ service for your window manager. I named mine `dwm.service`:
     
     [Service]
     Requires=xorg.target
-    # uncomment this if you want to have a non-default path
+    ## uncomment this if you want to have a non-default path
     #Environment=PATH=%h/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:%h/bin
-    Environment=DISPLAY=:0
     ExecStart=/usr/bin/dwm
     Restart=always
     RestartSec=10
