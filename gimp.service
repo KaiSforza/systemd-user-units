@@ -1,9 +1,8 @@
 [Unit]
-Description=Image editor for display %i
+Description=Image editor
 After=wm.target
 
 [Service]
-Environment=DISPLAY=%i
 ExecStart=/usr/bin/gimp
 
 [Install]

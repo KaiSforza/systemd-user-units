@@ -1,9 +1,8 @@
 [Unit]
-Description=lightweight web browser for display %i
+Description=lightweight web browser dwb
 After=wm.target
 
 [Service]
-Environment=DISPLAY=%i
 ExecStart=/usr/bin/dwb
 
 [Install]

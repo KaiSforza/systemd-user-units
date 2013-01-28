@@ -3,7 +3,6 @@ Description=hib rts game
 After=wm.target
 
 [Service]
-Environment=DISPLAY=:0
 ExecStart=/usr/bin/eufloria
 
 [Install]

@@ -1,9 +1,11 @@
 [Unit]
 Description=i3lock
 After=xorg.target
+Before=suspend.target
+Before=dwm.service
 
 [Service]
-Type=oneshot
+Type=forking
 RemainAfterExit=yes
 ExecStart=/usr/bin/i3lock -d -c 000000
 

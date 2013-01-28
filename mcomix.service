@@ -1,9 +1,8 @@
 [Unit]
-Description=comic book viewer for display %i
+Description=comic book viewer
 After=wm.target
 
 [Service]
-Environment=DISPLAY=%i
 ExecStart=/usr/bin/mcomix
 
 [Install]

@@ -1,10 +1,9 @@
 [Unit]
-Description=bind hotkeys for display %i
+Description=bind hotkeys
 Requires=xorg.target
 After=xorg.target
 
 [Service]
-Environment=DISPLAY=%i
 ExecStart=/usr/bin/xbindkeys -n -f /home/wgiokas/.xbindkeysrc
 
 [Install]

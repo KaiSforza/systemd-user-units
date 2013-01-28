@@ -3,7 +3,6 @@ Description=Steam launcher
 After=wm.target
 
 [Service]
-Environment=DISPLAY=:0
 ExecStart=/usr/bin/steam
 ExecStop=/usr/bin/pkill -F %h/.steampid
 ExecStop=/usr/bin/pkill -9 MainThrd

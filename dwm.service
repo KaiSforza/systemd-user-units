@@ -8,8 +8,7 @@ Before=mystuff.target
 [Service]
 Type=simple
 GuessMainPID=yes
-Environment=PATH=/home/wgiokas/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/core_perl:/home/wgiokas/bin
-Environment=DISPLAY=:0
+Environment=PATH=%h/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/core_perl:%h/bin
 ExecStart=/usr/bin/dwm
 KillSignal=SIGKILL
 Restart=always
