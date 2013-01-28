@@ -9,7 +9,7 @@ Before=mystuff.target
 Type=simple
 GuessMainPID=yes
 Environment=PATH=%h/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/core_perl:%h/bin
-ExecStart=/usr/bin/dwm
+ExecStart=/home/wgiokas/bin/dwm
 KillSignal=SIGKILL
 Restart=always
 RestartSec=10

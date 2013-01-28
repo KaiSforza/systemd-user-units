@@ -4,7 +4,7 @@ Requires=xorg.target
 After=xorg.target
 
 [Service]
-ExecStart=/usr/bin/xbindkeys -n -f /home/wgiokas/.xbindkeysrc
+ExecStart=/usr/bin/xbindkeys -n -f %h/.xbindkeysrc
 
 [Install]
 WantedBy=mystuff.target

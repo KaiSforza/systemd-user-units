@@ -1,6 +1,5 @@
 [Unit]
 Description=Music Player Daemon
-Before=tmux@wgiokas.service
 
 [Service]
 ExecStart=/usr/bin/mpd --no-daemon
