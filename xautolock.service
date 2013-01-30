@@ -1,0 +1,9 @@
+[Unit]
+Description=lock screen after a few minutes of inactivity
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xautolock -time 15 -locker "systemctl --user restart i3lock.service"
+
+[Install]
+WantedBy=mystuff.target

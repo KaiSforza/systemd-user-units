@@ -62,9 +62,9 @@ service for your window manager. I named mine `dwm.service`:
     Description=Simple tiling/stacking/tabbed window manager
     Before=mystuff.target
     After=xorg.target
+    Requires=xorg.target
     
     [Service]
-    Requires=xorg.target
     ## uncomment this if you want to have a non-default path
     #Environment=PATH=%h/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:%h/bin
     ExecStart=/usr/bin/dwm

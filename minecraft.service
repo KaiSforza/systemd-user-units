@@ -1,0 +1,6 @@
+[Unit]
+Description=Creative mining game
+After=wm.target
+
+[Service]
+ExecStart=/usr/bin/minecraft
