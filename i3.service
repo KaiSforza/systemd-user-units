@@ -5,7 +5,6 @@ Before=mystuff.target
 After=xorg.target
 
 [Service]
-Environment=PATH=/home/wgiokas/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/core_perl:/home/wgiokas/bin
 ExecStart=/usr/bin/i3
 Restart=always
 RestartSec=10

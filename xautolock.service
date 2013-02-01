@@ -1,5 +1,7 @@
 [Unit]
 Description=lock screen after a few minutes of inactivity
+After=xorg.target
+Requires=xorg.target
 
 [Service]
 Type=simple

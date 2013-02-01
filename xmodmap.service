@@ -2,6 +2,8 @@
 Description=xmodmap
 Requires=xorg.target
 After=xorg.target
+Before=dwm.service
+
 
 [Service]
 Type=oneshot
