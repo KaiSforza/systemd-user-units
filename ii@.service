@@ -1,0 +1,6 @@
+[Unit]
+Description=irc it - A tiny irc client written in C
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ii -s irc.freenode.org -n %i -f %i -i %h/irc
