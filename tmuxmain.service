@@ -1,6 +1,6 @@
 [Unit]
 Description=main tmux client
-After=mpd.service
+Requires=mpd.service
 
 [Service]
 Type=oneshot
