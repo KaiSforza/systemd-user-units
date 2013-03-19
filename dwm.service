@@ -8,8 +8,8 @@ Before=mystuff.target
 [Service]
 Type=simple
 GuessMainPID=yes
-#ExecStart=/home/wgiokas/git/KaiSforza/dwm/dwm
-ExecStart=/usr/bin/dwm
+ExecStart=/home/wgiokas/git/KaiSforza/dwm/dwm
+#ExecStart=/usr/bin/dwm
 Restart=always
 RestartSec=10
 
