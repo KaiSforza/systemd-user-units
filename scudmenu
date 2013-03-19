@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# systemctl-user-dmenu
+# Use systemctl --user from dmenu. Useful in tiling wms.
+
+unset opts
+unset service
+unset unit
+unset cmd
+font="${font:="-*-proggyoptis-*-*-*-*-*-*-*-*-*-*-*-*"}"
+
+opts=("start"
+      "stop"
+      "restart" "try-restart" "reload-or-restart"
+      "status"
+      "list-unit-files")
+
+for i in "$HOME/.config/systemd/user/"*.service "/etc/systemd/user/"*.service "/usr/lib/systemd/user/"*.service; do
+  if [[ $i == *"*.service"* ]]; then
+    service=("${service[@]}")
+  else
+    j="${i##*/}"
+    j="${j%%.service}"
+    service=("${service[@]}" "$j")
+  fi
+done
+
+cmd="$(printf "%s\n" "${opts[@]}" | dmenu -fn "${font}" \
+  -nb "#000000" -nf "#dddddd" -sb "#333333" -sf "#eeeeee" \
+  -p "Action:")"
+
+[[ -z $cmd ]] && exit 1
+
+unit="$(printf "%s\n" "${service[@]}" | dmenu -fn "${font}" \
+  -nb "#000000" -nf "#dddddd" -sb "#333333" -sf "#eeeeee" \
+  -p "systemctl --user $cmd")"
+
+[[ -z $unit ]] && exit 2
+
+if [[ $cmd == "status" ]]; then
+  urxvtc -title "scustatus" -e /usr/bin/bash -c "systemctl --user $cmd $unit ; read "
+else
+  systemctl --user "$cmd" "$unit"
+fi
