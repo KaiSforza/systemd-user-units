@@ -7,36 +7,80 @@ unset opts
 unset service
 unset unit
 unset cmd
+
+##
+# Consistent dmenu commands, specific colors for dmenu.
+# @params: message, print, ...
+# message: To be displayed as the prompt for dmenu
+# print:   The words to populate the list for dmenu
+##
+dmenucmd() {
+  local mesg=$1
+  shift
+  local printing=("$@")
+  printf "%s\n" "${printing[@]}" | dmenu -fn "${font}" \
+    -nb "#000000" -nf "#dddddd" -sb "#333333" -sf "#eeeeee" \
+    -p "$mesg"
+}
+
+##
+# filter out .services and full path, only showing service name.
+# @params: input
+# input:   word to be filtered
+# Example - input = /etc/systemd/user/foo.service
+#           output=                   foo
+##
+return_services () {
+  local arg="$1"
+  if [[ $arg == *"*.service"* || $arg == *"*.socket"* ]]; then
+    # If the service directory doesn't have any service files, it will usually
+    # return /path/to/service/*.service, so filter that out right away.
+    unset serv
+  else
+    j="${i##*/}"
+    j="${j%%.service}"
+    serv="$j"
+    printf "%s" "$serv"
+  fi
+}
+
+# pick a font for your dmenu. I use proggyoptis. It's tiny.
 font="${font:="-*-proggyoptis-*-*-*-*-*-*-*-*-*-*-*-*"}"
 
+# Specify the options you want to see. `status` is treated specially and should
+# not be removed from the array.
 opts=("start"
       "stop"
       "restart" "try-restart" "reload-or-restart"
       "status"
       "list-unit-files")
 
-for i in "$HOME/.config/systemd/user/"*.service "/etc/systemd/user/"*.service "/usr/lib/systemd/user/"*.service; do
-  if [[ $i == *"*.service"* ]]; then
-    service=("${service[@]}")
-  else
-    j="${i##*/}"
-    j="${j%%.service}"
-    service=("${service[@]}" "$j")
-  fi
-done
+# Iterate through the list of services in the three user directories in order
+# of priority.
+find_services () {
+  for i in  "$HOME/.config/systemd/user/"*.{service,socket} \
+    "/etc/systemd/user/"*.{service,socket} \
+    "/usr/lib/systemd/user/"*.{service,socket}; do
+    service=("${service[@]}" "$(return_services $i)")
+  done
+}
 
-cmd="$(printf "%s\n" "${opts[@]}" | dmenu -fn "${font}" \
-  -nb "#000000" -nf "#dddddd" -sb "#333333" -sf "#eeeeee" \
-  -p "Action:")"
+# Get the command to be run from the `opts` list
+cmd="$(dmenucmd "Action:" "${opts[@]}")"
 
 [[ -z $cmd ]] && exit 1
 
-unit="$(printf "%s\n" "${service[@]}" | dmenu -fn "${font}" \
-  -nb "#000000" -nf "#dddddd" -sb "#333333" -sf "#eeeeee" \
-  -p "systemctl --user $cmd")"
+# Get the unit that is going to be run by systemctl. Can be a list of units,
+# just as running it from the command line, though dmenu will only display the
+# first one.
+find_services
+unit="$(dmenucmd "systemctl --user $cmd" "${service[@]}")"
 
 [[ -z $unit ]] && exit 2
 
+# The actual running of commands. `status`, as stated above, is treated
+# specially, and will open a urxvt window displaying the status output,
+# otherwise we just run systemctl --user with the specified command and unit.
 if [[ $cmd == "status" ]]; then
   urxvtc -title "scustatus" -e /usr/bin/bash -c "systemctl --user $cmd $unit ; read "
 else
