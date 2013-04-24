@@ -4,7 +4,7 @@ After=dwm.service
 Requires=dwm.service
 
 [Service]
-ExecStart=/usr/bin/dwmstatus
+ExecStart=/home/wgiokas/git/KaiSforza/dwmstatus/dwmstatus
 Restart=no
 
 [Install]

@@ -8,7 +8,7 @@ root privileges. Recently, I have begun working with the user part of systemd.
 This allows me to use systemd to start unprivileged services, such as my
 window manager, tmux session, music player daemon and more.
 
-I began using [gtmanfred's guide] [1] to setting this up. I am going to rewrite
+I began using [gtmanfred's guide] [1] to set this up. I am going to rewrite
 it partially to be of more help, and partially to help get this into my head
 even more. 
 

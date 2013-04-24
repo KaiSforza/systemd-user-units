@@ -1,6 +1,7 @@
 [Unit]
 Description=Steam launcher
 After=wm.target
+Conflicts=unclutter.service
 
 [Service]
 ExecStart=/usr/bin/steam
