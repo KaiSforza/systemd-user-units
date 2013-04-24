@@ -1,0 +1,5 @@
+[Unit]
+Description=SSH proxy using socks5
+
+[Service]
+ExecStart=/usr/bin/ssh -D 8051 -N wgiokas@zncvps.med
