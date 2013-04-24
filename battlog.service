@@ -1,0 +1,6 @@
+[Unit]
+Description=Log battery info to a file
+
+[Service]
+Type=simple
+ExecStart=/home/wgiokas/bin/logpower
