@@ -7,7 +7,7 @@ RemainAfterExit=yes
 ExecStart=/usr/bin/tmux new-session -d -s %u -n 'weechat' 'weechat-curses --upgrade -d %h/.weechat'
 ExecStart=/usr/bin/tmux new-window -t %u:2 'mutt'
 ExecStart=/usr/bin/tmux new-window -t %u:3 'ncmpcpp'
-ExecStart=/usr/bin/tmux new-window -t %u:4 'zsh'
+ExecStart=/usr/bin/tmux new-window -t %u:4 '/usr/bin/zsh'
 
 ExecStop=/usr/bin/tmux kill-session -t %u
 
