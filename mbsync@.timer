@@ -1,0 +1,8 @@
+[Unit]
+Description=sync mailboxes with %i
+
+[Timer]
+OnCalendar=*-*-* *:*:00
+
+[Install]
+WantedBy=mystuff.target

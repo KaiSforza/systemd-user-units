@@ -1,0 +1,10 @@
+[Unit]
+Description=Start mbsync for mbox: %i
+
+[Service]
+Type=simple
+ExecStart=/home/wgiokas/bin/mbsync-daemon 60 -q %i
+#ExecStart=/usr/bin/mbsync -q %i
+
+[Install]
+WantedBy=mystuff.target
