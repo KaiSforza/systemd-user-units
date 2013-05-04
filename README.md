@@ -149,18 +149,60 @@ give up!
 
 ## A quick graph of how my units start:
 
-    [pulseaudio]-----------------------
-    [mpd]------------------------------
-    [urxvtd]---------------------------
-    [udiskie]--------------------------
-    [offlineimap]----------------------
-    [xorg]-----------------------------
-       ├─[dwm]-------------------------
-       │ └─[dwm-status]----------------
-       ├─[xbindkeys]-------------------
-       ├─[unclutter]-------------------
-       ├─[parcellite]------------------
-       └─[i3lock]----------------------
+Created using `systemd-analyze --fuzz=1 critical-chain`
+
+The time after the unit is active or started is printed after the "@" character.
+The time the unit takes to start is printed after the "+" character.
+
+    mystuff.target @358ms
+    ├─xbindkeys.service @296ms
+    │ ├─xorg.target @295ms
+    │ │ └─xorg.service @23ms +271ms
+    │ │   ├─sockets.target @22ms
+    │ │   │ ├─dbus.socket @22ms
+    │ │   │ │ └─-.mount @11ms
+    │ │   │ └─mpd.socket @22ms
+    │ │   ├─timers.target @22ms
+    │ │   └─paths.target @22ms
+    │ ├─sockets.target @22ms
+    │ │ └─...
+    │ ├─timers.target @22ms
+    │ │ └─...
+    │ └─paths.target @22ms
+    │   └─...
+    ├─xautolock.service @295ms
+    │ ├─xorg.target @295ms
+    │ │ └─...
+    │ ├─sockets.target @22ms
+    │ │ └─...
+    │ ├─timers.target @22ms
+    │ │ └─...
+    │ └─paths.target @22ms
+    │   └─...
+    ├─gpg-agent.service @23ms +26ms
+    │ ├─sockets.target @22ms
+    │ │ └─...
+    │ ├─timers.target @22ms
+    │ │ └─...
+    │ └─paths.target @22ms
+    │   └─...
+    ├─udiskie.service @24ms
+    │ ├─sockets.target @22ms
+    │ │ └─...
+    │ ├─timers.target @22ms
+    │ │ └─...
+    │ └─paths.target @22ms
+    │   └─...
+    ├─urxvtd.service @23ms
+    │ ├─sockets.target @22ms
+    │ │ └─...
+    │ ├─timers.target @22ms
+    │ │ └─...
+    │ └─paths.target @22ms
+    │   └─...
+    └─mpd.socket @22ms
+      └─...
+
 ## See also:
 
 * [X Units](https://bitbucket.org/KaiSforza/systemd-user-units/wiki/X-Applications)
