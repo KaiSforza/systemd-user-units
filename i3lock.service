@@ -5,9 +5,8 @@ Before=suspend.target
 Before=dwm.service
 
 [Service]
-Type=forking
-RemainAfterExit=yes
-ExecStart=/usr/bin/i3lock -d -c 000000
+Type=oneshot
+ExecStart=/usr/bin/i3lock -d -c 000000 -p default -n
 
 [Install]
 WantedBy=mystuff.target
