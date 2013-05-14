@@ -122,14 +122,6 @@ to this:
 
     Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/dbus/user_bus_socket
 
-Also, a [Install] section needs to be added as well.
-
-    [Install]
-    WantedBy=graphical.target
-
-should be appended to your user-session@.service file, else enabling it will not
-work correctly.
-
 ## Anecdotes
 
 One of the most important things you can add to the service files you will be
