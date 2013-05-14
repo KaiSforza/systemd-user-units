@@ -195,10 +195,6 @@ The time the unit takes to start is printed after the "+" character.
     └─mpd.socket @22ms
       └─...
 
-## See also:
-
-* [X Units](https://bitbucket.org/KaiSforza/systemd-user-units/wiki/X-Applications)
-
 [1]: http://blog.gtmanfred.com/?p=26
 [2]: https://aur.archlinux.org/packages/xorg-launch-helper/
 [3]: https://aur.archlinux.org/packages/user-session-units/
