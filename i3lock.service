@@ -1,12 +1,11 @@
 [Unit]
 Description=i3lock
 After=xorg.target
-Before=suspend.target
 Before=dwm.service
 
 [Service]
-Type=oneshot
-ExecStart=/usr/bin/i3lock -d -c 000000 -p default -n
+Type=forking
+ExecStart=/usr/bin/i3lock -d -c 000000 -p default
 
 [Install]
 WantedBy=mystuff.target
