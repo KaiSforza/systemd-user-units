@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch user repo at /home/%u/.cache/pacman/pkg
+
+[Path]
+PathExistsGlob=/home/%u/.cache/pacman/pkg/*.pkg.tar.gz.sig
+Unit=repose@%i.service
+
+[Install]
+WantedBy=mystuff.target
