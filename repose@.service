@@ -4,3 +4,4 @@ Description=Update the %i repo
 [Service]
 Type=simple
 ExecStart=/usr/bin/repose -Ufc %h/.cache/pacman/pkg/%i.db
+Restart=no
