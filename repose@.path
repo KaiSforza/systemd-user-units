@@ -2,6 +2,9 @@
 Description=Watch user repo at /home/%u/.cache/pacman/pkg
 
 [Path]
+# NOTE: The glob here only works on the ~/.cache/pacman/pkg/*, any file
+#       created in that dir will trigger the unit, not just files ending in
+#       .pkg.tar.gz.sig. This will cause repose to kill its own repos.
 PathExistsGlob=/home/%u/.cache/pacman/pkg/*.pkg.tar.gz.sig
 Unit=repose@%i.service
 
