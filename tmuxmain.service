@@ -4,12 +4,12 @@ Description=main tmux client
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/tmux new-session -d -s %u -n 'weechat' 'weechat-curses --upgrade -d %h/.weechat'
-ExecStart=/usr/bin/tmux new-window -t %u:2 'mutt'
-ExecStart=/usr/bin/tmux new-window -t %u:3 'ncmpcpp'
-ExecStart=/usr/bin/tmux new-window -t %u:4 '/usr/bin/zsh'
+ExecStart=/usr/bin/tmux -S /run/tmux-%U/default new-session -d -s %u -n 'weechat' 'weechat-curses --upgrade -d %h/.weechat'
+ExecStart=/usr/bin/tmux -S /run/tmux-%U/default new-window -t %u:2 'mutt'
+ExecStart=/usr/bin/tmux -S /run/tmux-%U/default new-window -t %u:3 'ncmpcpp'
+ExecStart=/usr/bin/tmux -S /run/tmux-%U/default new-window -t %u:4 '/usr/bin/zsh'
 
-ExecStop=/usr/bin/tmux kill-session -t %u
+ExecStop=/usr/bin/tmux -S /run/tmux-%U/default kill-session -t %u
 
 [Install]
 WantedBy=mystuff.target
