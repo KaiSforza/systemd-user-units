@@ -9,6 +9,7 @@ Type=oneshot
 ExecStart=/usr/bin/xset -b
 ExecStart=/usr/bin/xset +fp /usr/share/fonts/local
 ExecStart=/usr/bin/xset fp rehash
+ExecStart=/usr/bin/xset r rate 160 30
 
 [Install]
 WantedBy=mystuff.target
